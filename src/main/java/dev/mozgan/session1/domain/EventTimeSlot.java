@@ -13,6 +13,9 @@ public class EventTimeSlot {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Version
+    private Integer version;
+
     private String slotTitle;
 
     private String slotDescription;

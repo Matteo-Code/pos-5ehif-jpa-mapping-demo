@@ -20,6 +20,9 @@ public class InformationEvent {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Version
+    private Integer version;
+
     private InformationEventType eventType;
 
     private String name;
