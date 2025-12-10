@@ -35,10 +35,10 @@ public class InformationEvent {
     @AttributeOverrides({
             @AttributeOverride(name = "building", column = @Column(name = "room_building")),
             @AttributeOverride(name = "level", column = @Column(name = "room_level")),
-            @AttributeOverride(name = "roomNo", column = @Column(name = "room_roomNo")),
+            @AttributeOverride(name = "roomNo", column = @Column(name = "room_room_no")),
             @AttributeOverride(name = "description", column = @Column(name = "room_description")),
-            @AttributeOverride(name = "numberOfDesks", column = @Column(name = "room_numDesks")),
-            @AttributeOverride(name = "numberOfSeats", column = @Column(name = "room_numSeats")),
+            @AttributeOverride(name = "numberOfDesks", column = @Column(name = "room_num_desks")),
+            @AttributeOverride(name = "numberOfSeats", column = @Column(name = "room_num_seats")),
     })
     private Room room;
 
