@@ -1,6 +1,7 @@
 package dev.mozgan.session1.domain;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -17,9 +18,8 @@ import java.util.Date;
 @Table(name = "persons")
 public class Person {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    @EmbeddedId
+    private PersonId personId;
 
     @Version
     private Integer version;
@@ -32,5 +32,8 @@ public class Person {
 
     @Column(nullable = false)
     private Date dateOfBirth;
+
+    @Embeddable
+    public record PersonId(@NotNull @GeneratedValue Long id) {}
 
 }

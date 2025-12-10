@@ -6,7 +6,9 @@ import jakarta.persistence.Convert;
 import jakarta.persistence.Entity;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.experimental.SuperBuilder;
 
+@SuperBuilder
 @Data
 @NoArgsConstructor
 

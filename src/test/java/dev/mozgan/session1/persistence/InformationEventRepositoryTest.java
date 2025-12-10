@@ -20,7 +20,7 @@ public class InformationEventRepositoryTest {
     private InformationEventRepository informationEventRepository;
 
     @Test
-    public void canSaveAndFindPerson() {
+    public void canSaveAndFindEvent() {
         InformationEvent saved = informationEventRepository.save(Fixtures.informationEvent());
 
         assertThat(saved).isNotNull();

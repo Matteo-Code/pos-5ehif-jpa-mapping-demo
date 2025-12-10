@@ -1,10 +1,19 @@
 package dev.mozgan.session1.domain;
 
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
-import java.sql.Date;
 import java.sql.Time;
+import java.util.Date;
 import java.util.Set;
+
+@Builder
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
 
 @Entity
 public class EventTimeSlot {
@@ -20,6 +29,7 @@ public class EventTimeSlot {
 
     private String slotDescription;
 
+    @Column(name = "slot_day")
     private Date day;
 
     private Time startTime;
