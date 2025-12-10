@@ -2,10 +2,10 @@ package dev.mozgan.session1.domain;
 
 import jakarta.validation.constraints.NotNull;
 
-public record TeacherIdentifier(@NotNull String identifier) {
+public record TeacherIdentifier(@NotNull String value) implements RichType<String> {
 
     public TeacherIdentifier {
-        if(identifier == null) throw new IllegalArgumentException("Identifier cannot be null");
+        if(value == null) throw new IllegalArgumentException("Identifier cannot be null");
     }
 
 }

@@ -5,17 +5,12 @@ import dev.mozgan.session1.domain.TeacherIdentifier;
 import jakarta.persistence.AttributeConverter;
 import jakarta.persistence.Converter;
 
+import java.util.function.Function;
+
 @Converter(autoApply = true)
-public class StudentIdentifierConverter implements AttributeConverter<StudentIdentifier, String> {
+public class StudentIdentifierConverter extends AbstractRichTypeConverter<StudentIdentifier, String> {
 
-
-    @Override
-    public String convertToDatabaseColumn(StudentIdentifier studentIdentifier) {
-        return studentIdentifier != null ? studentIdentifier.identifier() : null;
-    }
-
-    @Override
-    public StudentIdentifier convertToEntityAttribute(String s) {
-        return s != null ? new StudentIdentifier(s) : null;
+    protected StudentIdentifierConverter() {
+        super(StudentIdentifier::new);
     }
 }
