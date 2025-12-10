@@ -29,14 +29,16 @@ public class EventTimeSlot {
 
     private String slotDescription;
 
-    @Column(name = "slot_day")
+    @Column(name = "slot_day", nullable = false)
     private Date day;
 
+    @Column(nullable = false)
     private Time startTime;
 
+    @Column(nullable = false)
     private Time endTime;
 
-    @OneToMany
+    @OneToMany(cascade =  {CascadeType.MERGE, CascadeType.PERSIST})
     @JoinTable(name = "time_slots_students",
             foreignKey = @ForeignKey(name = "FK_time_slot_2_student"),
             inverseForeignKey = @ForeignKey(name = "FK_student_2_time_slot"),
@@ -45,7 +47,7 @@ public class EventTimeSlot {
     )
     private Set<Student> students;
 
-    @OneToMany
+    @OneToMany(cascade =  {CascadeType.MERGE, CascadeType.PERSIST})
     @JoinTable(name = "time_slots_teachers",
             foreignKey = @ForeignKey(name = "FK_time_slot_2_teacher"),
             inverseForeignKey = @ForeignKey(name = "FK_teacher_2_time_slot"),

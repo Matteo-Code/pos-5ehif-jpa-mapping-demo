@@ -23,8 +23,10 @@ public class InformationEvent {
     @Version
     private Integer version;
 
+    @Column(nullable = false)
     private InformationEventType eventType;
 
+    @Column(nullable = false)
     private String name;
 
     private String description;
@@ -41,9 +43,10 @@ public class InformationEvent {
     private Room room;
 
     @OneToMany(orphanRemoval = true, cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REMOVE})
+    @JoinColumn(name = "information_event_id", foreignKey = @ForeignKey(name = "FK_slot_2_information_event"))
     private Set<EventTimeSlot> eventTimeSlots;
 
-    @OneToMany
+    @OneToMany(cascade =  {CascadeType.MERGE, CascadeType.PERSIST})
     @JoinTable(name = "information_events_students",
             foreignKey = @ForeignKey(name = "FK_information_event_2_student"),
             inverseForeignKey = @ForeignKey(name = "FK_student_2_information_event"),
@@ -52,7 +55,7 @@ public class InformationEvent {
     )
     private Set<Student> students;
 
-    @OneToMany
+    @OneToMany(cascade =  {CascadeType.MERGE, CascadeType.PERSIST})
     @JoinTable(name = "information_events_teachers",
             foreignKey = @ForeignKey(name = "FK_information_event_2_teacher"),
             inverseForeignKey = @ForeignKey(name = "FK_teacher_2_information_event"),
