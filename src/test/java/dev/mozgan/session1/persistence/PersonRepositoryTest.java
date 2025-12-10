@@ -2,10 +2,12 @@ package dev.mozgan.session1.persistence;
 
 import dev.mozgan.session1.Fixtures;
 import dev.mozgan.session1.domain.Person;
+import dev.mozgan.session1.persistence.converter.PersonSpecifications;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
+import org.springframework.data.jpa.domain.Specification;
 
 import java.util.Date;
 import java.util.List;
@@ -37,10 +39,19 @@ public class PersonRepositoryTest {
     public void canFindPersonWithLastNameSchmidt() {
         personRepository.save(Fixtures.person());
 
-        List<Person> schmitd = personRepository.findSchmidts();
+        List<Person> schmidts = personRepository.findSchmidts();
 
-        assertThat(schmitd.size()).isEqualTo(1);
-        assertThat(schmitd.get(0).getLastName()).isEqualTo("Schmidt");
+        assertThat(schmidts.size()).isEqualTo(1);
+        assertThat(schmidts.get(0).getLastName()).isEqualTo("Schmidt");
+    }
+
+    @Test
+    void canFindPersonWithFirstNameBySpecification(){
+        personRepository.save(Fixtures.person());
+
+        List<Person> found = personRepository.findAll(PersonSpecifications.hasFirstName("Test"));
+
+        assertThat(found.size()).isEqualTo(1);
     }
 
 }
